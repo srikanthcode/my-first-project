@@ -1,0 +1,19 @@
+#!/bin/sh
+# Maven Wrapper - Auto-download Maven if not present
+
+MAVEN_VERSION=3.9.6
+BASE_URL=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/${MAVEN_VERSION}
+MAVEN_HOME=.mvn/wrapper
+
+if [ ! -d "$MAVEN_HOME" ]; then
+    mkdir -p "$MAVEN_HOME"
+fi
+
+if [ ! -f "$MAVEN_HOME/apache-maven-${MAVEN_VERSION}.zip" ]; then
+    echo "Downloading Maven ${MAVEN_VERSION}..."
+    curl -o "$MAVEN_HOME/apache-maven-${MAVEN_VERSION}.zip" \
+        "${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.zip"
+fi
+
+# Execute Maven
+exec java -jar "$MAVEN_HOME/maven-wrapper.jar" "$@"
