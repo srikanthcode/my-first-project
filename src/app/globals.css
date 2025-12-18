@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: "Inter", system-ui, sans-serif;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-text-primary font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+@layer components {
+  /* Message bubble styles */
+  .message-bubble {
+    @apply relative px-3 py-2 rounded-lg shadow-sm max-w-[65%] break-words;
+  }
+  
+  .message-bubble-sent {
+    @apply bg-message-sent dark:bg-message-sent-dark ml-auto;
+  }
+  
+  .message-bubble-received {
+    @apply bg-message-received dark:bg-message-received-dark;
+  }
+  
+  /* Chat item hover effect */
+  .chat-item {
+    @apply cursor-pointer transition-colors duration-150;
+  }
+  
+  .chat-item:hover {
+    @apply bg-hover dark:bg-hover-dark;
+  }
+  
+  .chat-item-active {
+    @apply bg-hover dark:bg-hover-dark;
+  }
+  
+  /* Input styles */
+  .input-primary {
+    @apply w-full px-4 py-2 rounded-lg border border-border dark:border-border-dark 
+           bg-panel dark:bg-panel-dark text-text-primary dark:text-text-primary-dark
+           placeholder:text-text-secondary dark:placeholder:text-text-secondary-dark
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+           transition-all duration-200;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark 
+           text-white font-medium transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg bg-panel dark:bg-panel-dark 
+           text-text-primary dark:text-text-primary-dark
+           hover:bg-hover dark:hover:bg-hover-dark
+           transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-border dark:focus:ring-border-dark;
+  }
+  
+  .btn-icon {
+    @apply p-2 rounded-full text-icon dark:text-icon-dark
+           hover:bg-hover dark:hover:bg-hover-dark
+           transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-border dark:focus:ring-border-dark;
+  }
+  
+  /* Panel styles */
+  .panel {
+    @apply bg-panel dark:bg-panel-dark border-r border-border dark:border-border-dark;
+  }
+  
+  /* Chat background pattern */
+  .chat-background {
+    @apply bg-background-chat dark:bg-background-chat-dark;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .dark .chat-background {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+}
+
+@layer utilities {
+  /* Text truncation */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
